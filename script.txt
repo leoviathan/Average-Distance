@@ -1,0 +1,21 @@
+def result = newLineData();
+def close = close();
+def size = close.size();
+def moving_average = MA(close, 20, 0);
+
+def closes = newLines();
+closes.add(close);
+
+def mas = newLines();
+mas.add(moving_average);
+
+for ( def i = 0; i < moving_average.size(); i++ ) { 
+	double close_atual = close.value( i + 19 ); 
+	double ma_atual = moving_average.value( i );
+		
+	def afastamento = close_atual - ma_atual;//Math.abs(close_atual - ma_atual);
+	
+    result.add( afastamento ); 
+} 
+
+r = result;
